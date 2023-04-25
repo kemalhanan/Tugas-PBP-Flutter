@@ -1,6 +1,6 @@
 # study_tracker
 
-A new Flutter project.
+A brand new Flutter project.
 
 ## Getting Started
 
