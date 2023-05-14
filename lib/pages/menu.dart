@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:study_tracker/pages/widgets/drawer.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -12,6 +13,7 @@ class MyHomePage extends StatelessWidget {
           'Study Tracker',
         ),
       ),
+      drawer: const DrawerMenu(), // Menambahkan drawer pada halaman
       body: SingleChildScrollView(
         // Widget wrapper yang dapat discroll
         child: Padding(
