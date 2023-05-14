@@ -148,7 +148,7 @@ class _MyFormPageState extends State<MyFormPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      hintText: "Contoh: Sebelum masuk semester!",
+                      hintText: "Contoh: Sebelum ujian akhir semester!",
                       labelText: "Deskripsi Transaksi",
                       // Menambahkan icon agar lebih intuitif
                       icon: const Icon(Icons.notes),
@@ -187,7 +187,42 @@ class _MyFormPageState extends State<MyFormPage> {
                     backgroundColor: MaterialStateProperty.all(Colors.blue),
                   ),
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {}
+                    if (_formKey.currentState!.validate()) {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return Dialog(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            elevation: 15,
+                            child: Container(
+                              child: ListView(
+                                padding:
+                                    const EdgeInsets.only(top: 20, bottom: 20),
+                                shrinkWrap: true,
+                                children: <Widget>[
+                                  Center(child: const Text('Informasi Data')),
+                                  SizedBox(height: 20),
+                                  // TODO: Munculkan informasi yang didapat dari form
+                                  Text('Nama Tugas: $_namaTugas'),
+                                  Text('Nama Mata Kuliah: $_namaMataKuliah'),
+                                  Text('Progress: $_progress'),
+                                  Text('Deskripsi Tugas: $_deskripsiTugas'),
+                                  SizedBox(height: 20),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text('Kembali'),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    }
                   },
                 ),
               ],
