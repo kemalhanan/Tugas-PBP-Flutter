@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:study_tracker/pages/widgets/drawer.dart';
+import 'package:study_tracker/pages/form.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -82,11 +83,10 @@ class MyHomePage extends StatelessWidget {
                     color: Colors.blue,
                     child: InkWell(
                       onTap: () {
-                        ScaffoldMessenger.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(const SnackBar(
-                              content: Text(
-                                  "Kamu telah menekan tombol Tambah Tugas!")));
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const MyFormPage()));
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
