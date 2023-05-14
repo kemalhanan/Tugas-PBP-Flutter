@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:study_tracker/menu.dart';
+import 'package:study_tracker/pages/menu.dart';
 
 void main() {
   runApp(const MyApp());
