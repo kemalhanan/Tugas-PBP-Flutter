@@ -21,6 +21,16 @@ class DrawerMenu extends StatelessWidget {
               );
             },
           ),
+          ListTile(
+            title: const Text('Form'),
+            onTap: () {
+              // Route menu ke halaman form
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const MyFormPage()),
+              );
+            },
+          ),
         ],
       ),
     );
