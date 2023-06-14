@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:study_tracker/pages/assignment.dart';
 import 'package:study_tracker/pages/widgets/drawer.dart';
 import 'package:study_tracker/pages/form.dart';
 
@@ -86,7 +87,7 @@ class MyHomePage extends StatelessWidget {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const MyFormPage()));
+                                builder: (context) => const AssignmentPage()));
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),

@@ -1,3 +1,4 @@
+import 'package:study_tracker/pages/assignment.dart';
 import 'package:study_tracker/pages/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:study_tracker/pages/form.dart';
@@ -27,7 +28,7 @@ class DrawerMenu extends StatelessWidget {
               // Route menu ke halaman form
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const MyFormPage()),
+                MaterialPageRoute(builder: (context) => const AssignmentPage()),
               );
             },
           ),
