@@ -1,5 +1,6 @@
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:study_tracker/pages/assignment.dart';
 import 'package:study_tracker/pages/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -215,7 +216,7 @@ class _MyFormPageState extends State<MyFormPage> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const MyFormPage()));
+                                builder: (context) => const AssignmentPage()));
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(

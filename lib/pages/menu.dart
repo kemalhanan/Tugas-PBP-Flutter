@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:study_tracker/pages/assignment.dart';
+import 'package:study_tracker/pages/login.dart';
 import 'package:study_tracker/pages/widgets/drawer.dart';
 import 'package:study_tracker/pages/form.dart';
 
@@ -126,6 +127,11 @@ class MyHomePage extends StatelessWidget {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text("$message Sampai jumpa, $uname."),
                           ));
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LoginPage()),
+                          );
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text("$message"),
