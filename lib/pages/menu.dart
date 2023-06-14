@@ -53,12 +53,10 @@ class MyHomePage extends StatelessWidget {
                     child: InkWell(
                       // Area responsive terhadap sentuhan
                       onTap: () {
-                        // Memunculkan SnackBar ketika diklik
-                        ScaffoldMessenger.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(const SnackBar(
-                              content: Text(
-                                  "Kamu telah menekan tombol Lihat Study Tracker!")));
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const AssignmentPage()));
                       },
                       child: Container(
                         // Container untuk menyimpan Icon dan Text
@@ -91,7 +89,7 @@ class MyHomePage extends StatelessWidget {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const AssignmentPage()));
+                                builder: (context) => const MyFormPage()));
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),

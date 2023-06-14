@@ -17,6 +17,7 @@ class _MyFormPageState extends State<MyFormPage> {
   String _namaTugas = '';
   String _namaMataKuliah = '';
   int _progress = 0;
+  DateTime _tanggalTugas = DateTime.now();
   String _deskripsiTugas = '';
 
   @override
@@ -194,12 +195,13 @@ class _MyFormPageState extends State<MyFormPage> {
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       final response = await request.postJson(
-                        '/tracker/create-flutter/',
+                        'https://tugas-pbp.domcloud.io/tracker/create-flutter/',
                         convert.jsonEncode(
                           <String, String>{
                             'nama_tugas': _namaTugas,
                             'nama_mata_kuliah': _namaMataKuliah,
                             'progress': _progress.toString(),
+                            'tanggal_tugas': _tanggalTugas.toString(),
                             'deskripsi_tugas': _deskripsiTugas,
                           },
                         ),

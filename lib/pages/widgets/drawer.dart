@@ -28,6 +28,16 @@ class DrawerMenu extends StatelessWidget {
               // Route menu ke halaman form
               Navigator.pushReplacement(
                 context,
+                MaterialPageRoute(builder: (context) => const MyFormPage()),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('Assignment'),
+            onTap: () {
+              // Route menu ke halaman assignment
+              Navigator.pushReplacement(
+                context,
                 MaterialPageRoute(builder: (context) => const AssignmentPage()),
               );
             },
