@@ -155,7 +155,7 @@ class _MyFormPageState extends State<MyFormPage> {
                   child: TextFormField(
                     decoration: InputDecoration(
                       hintText: "Contoh: Sebelum ujian akhir semester!",
-                      labelText: "Deskripsi Transaksi",
+                      labelText: "Deskripsi Tugas",
                       // Menambahkan icon agar lebih intuitif
                       icon: const Icon(Icons.notes),
                       // Menambahkan circular border agar lebih rapi
@@ -178,7 +178,7 @@ class _MyFormPageState extends State<MyFormPage> {
                     // Validator sebagai validasi form
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        return 'Deskripsi transaksi tidak boleh kosong!';
+                        return 'Deskripsi tugas tidak boleh kosong!';
                       }
                       return null;
                     },
