@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 import 'package:study_tracker/pages/assignment.dart';
 import 'package:study_tracker/pages/widgets/drawer.dart';
 import 'package:study_tracker/pages/form.dart';
@@ -8,6 +10,8 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
+
     return Scaffold(
       appBar: AppBar(
         // Set title aplikasi menjadi Money Tracker
@@ -115,12 +119,20 @@ class MyHomePage extends StatelessWidget {
                   Material(
                     color: Colors.red,
                     child: InkWell(
-                      onTap: () {
-                        ScaffoldMessenger.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(const SnackBar(
-                              content:
-                                  Text("Kamu telah menekan tombol Logout!")));
+                      onTap: () async {
+                        final response = await request.logout(
+                            "https://tugas-pbp.domcloud.io/auth/logout/");
+                        String message = response['message'];
+                        if (response['status']) {
+                          String uname = response['message'];
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text("$message Sampai jumpa, $uname."),
+                          ));
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text("$message"),
+                          ));
+                        }
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),

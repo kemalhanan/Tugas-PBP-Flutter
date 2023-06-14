@@ -1,6 +1,9 @@
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 import 'package:study_tracker/pages/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'dart:convert' as convert;
 
 class MyFormPage extends StatefulWidget {
   const MyFormPage({super.key});
@@ -18,6 +21,8 @@ class _MyFormPageState extends State<MyFormPage> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Form'),
@@ -186,42 +191,36 @@ class _MyFormPageState extends State<MyFormPage> {
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.blue),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return Dialog(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            elevation: 15,
-                            child: Container(
-                              child: ListView(
-                                padding:
-                                    const EdgeInsets.only(top: 20, bottom: 20),
-                                shrinkWrap: true,
-                                children: <Widget>[
-                                  Center(child: const Text('Informasi Data')),
-                                  SizedBox(height: 20),
-                                  // TODO: Munculkan informasi yang didapat dari form
-                                  Text('Nama Tugas: $_namaTugas'),
-                                  Text('Nama Mata Kuliah: $_namaMataKuliah'),
-                                  Text('Progress: $_progress'),
-                                  Text('Deskripsi Tugas: $_deskripsiTugas'),
-                                  SizedBox(height: 20),
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: Text('Kembali'),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
+                      final response = await request.postJson(
+                        '/tracker/create-flutter/',
+                        convert.jsonEncode(
+                          <String, String>{
+                            'nama_tugas': _namaTugas,
+                            'nama_mata_kuliah': _namaMataKuliah,
+                            'progress': _progress.toString(),
+                            'deskripsi_tugas': _deskripsiTugas,
+                          },
+                        ),
                       );
+                      if (response['status'] == 'success') {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Tugas berhasil ditambahkan!'),
+                          ),
+                        );
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const MyFormPage()));
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Tugas gagal ditambahkan!'),
+                          ),
+                        );
+                      }
                     }
                   },
                 ),
